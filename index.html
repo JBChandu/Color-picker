@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+<style>
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+   
+}
+#img{
+    /*  */
+    max-width: 100%;
+    margin: 0 auto;
+}
+#btn{
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 5px;
+    font-size: 16px;
+    color:#070707;
+    border: none;
+}
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <img id="img" src="./Color-wheel-light-color-spectrum.webp" alt="color-wheel">
+        <h1 id="color"></h1>
+        <button id="btn">select</button>
+    </div>
+
+
+    
+    <script type="text/javascript">
+        const colorPickerButton = document.getElementById('btn');
+        const colorCode=document.getElementById("color");
+
+        colorPickerButton.addEventListener('click', () => {
+        colorPickerButton.hidden=true;
+        const picker = new EyeDropper();
+        picker.open().then(result => {
+            colorCode.innerHTML= `${result.sRGBHex}`;
+            colorPickerButton.hidden=false;
+        }).catch(err => {
+            console.error('Error occurred while picking color:', err);
+        });
+        });
+
+        
+
+    </script>
+</body>
+</html>
